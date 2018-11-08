@@ -1,0 +1,68 @@
+
+		<form (ngSubmit)="onSubmit(f)" #f="ngForm" class="form-horizontal">
+        <div class="row">
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="firstName">Imie:</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" name="firstName" id="firstName"
+              placeholder="Imie" required  ngModel>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="lastName">Nazwisko:</label>
+          <div class="col-sm-5">
+            <input type="text" class="form-control" name="lastName" id="lastName"
+              placeholder="Nazwisko" required ngModel>
+          </div>
+          <div>
+            <div class="form group">
+              <label class="control-label col-sm-2" for="emailPollub">E-mail:</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" name="emailPollub" id="emailPollub"
+                placeholder="@pollub.edu.pl" required email ngModel #email="ngModel" pattern='^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(pollub.edu)\.pl$'>
+                <span class="help-block" *ngIf="!email.valid && email.touched">Wprowadz poprawny adres email</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="login">Login:</label>
+            <div class="col-sm-5">
+              <input type="login" class="form-control" name="login" id="login" 
+              placeholder="Login" required ngModel>
+            </div>
+          </div>
+          <div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="password">Haslo:</label>
+              <div class="col-sm-5">
+                <input type="password" class="form-control" name="password" id="password" 
+                placeholder="Haslo" required [(ngModel)]="password" 
+                #passwordvalidityMsg="ngModel" 
+                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"/>
+                
+              </div>
+            </div>
+            <div>
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="confPass">Powtorz haslo:</label>
+                <div class="col-sm-5">
+                  <input type="password" class="form-control" name="confPass" id="confPass" 
+                  placeholder="Powtorz haslo" required [(ngModel)]="confPass" #confPassvalidityMsg="ngModel">
+                  <div *ngIf="confPassvalidityMsg.invalid && (confPassvalidityMsg.dirty || confPassvalidityMsg.touched)" >
+                      <div *ngIf="confPassvalidityMsg.errors.pattern"> Hasla sie roznia.</div>
+                    </div>
+                </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default" [disabled]="!f.valid">Rejestracja</button>
+          </div>
+        </div>
+        </div>
+      </form>
+    
+  
+  
