@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
       .subscribe(
       (response) => console.log(response);
       (error) => console.log(error);
-    );
+    )
     this.signupForm.reset();
     this.router.navigate(['/login']);
   }
