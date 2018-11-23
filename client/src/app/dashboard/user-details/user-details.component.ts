@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 @Component({
   selector: 'app-user-details',
   templateUrl: './user-details.component.html',
   styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent implements OnInit {
+  @ViewChild('profileDetails') profileDetails;
+  @ViewChild('lessonsDetails') lessonsDetails;
+  @ViewChild('postsDetails') postsDetails;
 
-  
   constructor() { }
 
   ngOnInit() {
+    this.profileDetails.nativeElement.style.display = 'block';
+    this.lessonsDetails.nativeElement.style.display = 'none';
+    this.postsDetails.nativeElement.style.display = 'none';
   }
 
   selectedDetail(event: any, detailName: string){
@@ -21,8 +26,9 @@ export class UserDetailsComponent implements OnInit {
     links = document.getElementsByClassName("link");
     for(let i=0;i<links.length;i++){
       links[i].className = links[i].className.replace(" active","");
+      console.log(links[i].className);
     }
     document.getElementById(detailName).style.display="block";
-    event.target.className += " active";
+    console.log(event.target.className);
   }
 }

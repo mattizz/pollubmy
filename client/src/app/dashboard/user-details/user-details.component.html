@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-lg-3">
       <ul class="list-group" >
-        <li class="list-group-item link" (click)="selectedDetail($event,'profile-details')">
+        <li class="list-group-item link active" (click)="selectedDetail($event,'profile-details')">
           <h4>Dane o profilu</h4>
         </li>
         <li class="list-group-item link" (click)="selectedDetail($event,'lessons-details')">
@@ -14,13 +14,13 @@
       </ul>
     </div>
     <div class="col-lg-8">
-      <div id="profile-details" class="tab">
+      <div id="profile-details" class="tab active" #profileDetails>
           <app-profile-details></app-profile-details>
       </div>
-      <div id="lessons-details" class="tab">
+      <div id="lessons-details" class="tab" #lessonsDetails>
           <app-lessons-details></app-lessons-details>
       </div>
-      <div id="posts-details" class="tab">
+      <div id="posts-details" class="tab" #postsDetails>
           <app-posts-details></app-posts-details>
       </div>
     </div>

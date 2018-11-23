@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserDetailsComponent } from './dashboard/user-details/user-details.component';
+import { FileUploadComponent } from './dashboard/file-upload/file-upload.component';
 const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'register', component: RegisterComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
     {path: 'dashboard',
     children: [
       {path: '', component: DashboardComponent},
+      {path: 'resources', component: FileUploadComponent},
       {path: 'details',component: UserDetailsComponent}], canActivate: [LoginGuard]}
    ]
 

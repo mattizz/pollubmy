@@ -21,6 +21,9 @@
           <a role="button" class="userLogin" routerLink="/dashboard/details" *ngIf="loginService.isLoggedIn()">Witaj, userLogin!</a>
         </li>   
         <li class="nav-item" >
+          <a role="button" class="userLogin" routerLink="/dashboard/resources" *ngIf="loginService.isLoggedIn()">Materiały dydaktyczne</a>
+        </li> 
+        <li class="nav-item" >
           <a role="button" class="logoutButton" (click)="loginService.logoutUser()" *ngIf="loginService.isLoggedIn()">Wyloguj się</a>
         </li>  
      </ul>

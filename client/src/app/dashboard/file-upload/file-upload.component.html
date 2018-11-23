@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <button type="button" class="btn btn-default btn-lg" (click)="openModal()">Udostępnij plik</button>
+      <div class="backdrop" [ngStyle]="{'display':displayBackdrop}"></div>
+      <h3>Wyszukaj wydział</h3>
+      <accordion>
+          <accordion-group *ngFor="let spec of specs" heading="{{spec.dep}}">
+              <accordion-group heading="{{spec.name}}">
+                  Bazy danych
+                </accordion-group>
+          </accordion-group>
+      </accordion>
+    </div>
+  </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':displayModal}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Udostępnij plik</h4>
+        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <form #upload="ngForm" (ngSubmit)="onUpload()">
+      <div class="modal-body">  
+          <div class="form-group">
+            <label for="department">Wydział</label>
+            <select (change)="onSelectDep($event)" name="department" id="department" class="form-control" required ngModel #department="ngModel">
+              <option value="dep" id="dep" *ngFor="let dep of deps">{{dep}}</option>
+            </select>
+            <p class="departmentValidation alert alert-danger" *ngIf="!department.valid && department.touched">
+              Zaznacz wydział
+            </p>
+            </div>
+            <div class="form-group">
+                <label for="specialization">Kierunek</label>
+                <select (change)="onSelectSpec($event)" [disabled]="depSelected"  name="specialization" id="specialization" class="form-control" required ngModel #specialization="ngModel">
+                  <option value="spec" id="spec" *ngFor="let spec of filterSpecByDep()">{{spec.name}}</option>
+                </select>
+                <p class="departmentValidation alert alert-danger" *ngIf="!specialization.valid && specialization.touched">
+                  Zaznacz kierunek
+                </p>
+            </div>
+            <div class="form-group">
+                <label for="subject">Przedmiot</label>
+                <select [disabled]="specSelected" name="subject" id="subject" class="form-control" required ngModel #subject="ngModel">
+                  <option value="subject">Bazy danych</option>
+                </select>
+                <p class="departmentValidation alert alert-danger" *ngIf="!subject.valid && subject.touched">
+                  Zaznacz przedmiot
+                </p>
+            </div>
+            <div class="form-group">
+              <label for="desc">Opis</label>
+              <textarea class="form-control" name="desc" id="desc" cols="20" rows="3" required ngModel #desc="ngModel"></textarea>
+              <p class="descValidation alert alert-danger" *ngIf="!desc.valid && desc.touched">
+                Uzupełnij opis
+              </p>
+            </div>
+          <div class="custom-file">
+            <input type="file" [disabled]="!desc.valid" (change)="onFileSelected($event)" name="file" class="custom-file-input" id="file" lang="pl" required ngModel #file="ngModel">
+            <label class="custom-file-label" for="customFile">{{fileName}}</label>
+            <p class="fileValidation alert alert-danger" *ngIf="!file.valid && file.touched">
+              Wybierz plik
+            </p>
+          </div>
+          <div class="progress" style="height:5px; margin: 5px;">
+              <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{width: progress + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          <p class="alert alert-success" *ngIf="progress == 100">Przesyłanie zakończone</p>
+        </div>
+      <div class="modal-footer">
+        <button type="submit" [disabled]="!(department.valid && specialization.valid && subject.valid  && desc.valid && file.valid)" class="btn btn-primary">Udostępnij</button>
+        <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>

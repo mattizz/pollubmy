@@ -15,6 +15,8 @@ import { UserDetailsComponent } from './dashboard/user-details/user-details.comp
 import { ProfileDetailsComponent } from './dashboard/user-details/profile-details/profile-details.component';
 import { LessonsDetailsComponent } from './dashboard/user-details/lessons-details/lessons-details.component';
 import { PostsDetailsComponent } from './dashboard/user-details/posts-details/posts-details.component';
+import { FileUploadComponent } from './dashboard/file-upload/file-upload.component';
+import {AccordionModule} from 'ngx-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,13 +29,15 @@ import { PostsDetailsComponent } from './dashboard/user-details/posts-details/po
     ProfileDetailsComponent,
     LessonsDetailsComponent,
     PostsDetailsComponent,
+    FileUploadComponent,
 
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AccordionModule.forRoot()
   ],
   providers: [LoginService,LoginGuard],
   bootstrap: [AppComponent]
