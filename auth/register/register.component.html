@@ -1,5 +1,34 @@
 
-		<form (ngSubmit)="onSubmit(f)" #f="ngForm" class="form-horizontal">
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+    function val () {
+      if(frm.password.value == "")
+        {
+          alert("Wprowadź hasło");
+          frm.password.focus();
+          return false;
+        }
+        if((frm.password.value).length < 8)
+        {
+          alert("Hasło powinno zawierać co najmniej 8 znaków");
+          frm.password.focus();
+          return false;
+        }
+        if(frm.confirmpassword.value == "")
+        {
+          alert("Wprowadź hasło ponownie");
+          return false;
+        }
+        if(frm.confirmpassword.value != frm.password.value)
+        {
+          alert("Hasła sie roznia");
+          return false;
+        }
+        return true;
+
+    }
+    </script>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="form-horizontal" name="frm">
         <div class="row">
         <div class="form-group">
           <label class="control-label col-sm-2" for="firstName">Imie:</label>
@@ -20,7 +49,7 @@
               <div class="col-sm-5">
                 <input type="text" class="form-control" name="emailPollub" id="emailPollub"
                 placeholder="@pollub.edu.pl" required email ngModel #email="ngModel" pattern='^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(pollub.edu)\.pl$'>
-                <span class="help-block" *ngIf="!email.valid && email.touched">Wprowadz poprawny adres email</span>
+                <span class="help-block" *ngIf="!email.valid && email.touched">Wprowadź poprawny adres e-mail</span>
               </div>
             </div>
           </div>
@@ -33,23 +62,20 @@
           </div>
           <div>
             <div class="form-group">
-              <label class="control-label col-sm-2" for="password">Haslo:</label>
+              <label class="control-label col-sm-2" for="password">Hasło:</label>
               <div class="col-sm-5">
                 <input type="password" class="form-control" name="password" id="password" 
-                placeholder="Haslo" required [(ngModel)]="password" 
-                #passwordvalidityMsg="ngModel" 
-                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"/>
-                
+                placeholder="Hasło" required [(ngModel)]="password"
+                pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$'>
+                <p>Hasło musi zawierac przynajmniej 8 znaków oraz przynajmniej jedną dużą i jedną małą literę oraz jedną cyfrę</p>
               </div>
             </div>
             <div>
               <div class="form-group">
-                <label class="control-label col-sm-2" for="confPass">Powtorz haslo:</label>
+                <label class="control-label col-sm-2" for="password">Powtórz hasło:</label>
                 <div class="col-sm-5">
-                  <input type="password" class="form-control" name="confPass" id="confPass" 
-                  placeholder="Powtorz haslo" required [(ngModel)]="confPass" #confPassvalidityMsg="ngModel">
-                  <div *ngIf="confPassvalidityMsg.invalid && (confPassvalidityMsg.dirty || confPassvalidityMsg.touched)" >
-                      <div *ngIf="confPassvalidityMsg.errors.pattern"> Hasla sie roznia.</div>
+                  <input type="password" class="form-control" name="confirmpassword"  
+                  placeholder="Powtórz hasło" required [(ngModel)]="password">
                     </div>
                 </div>
                 </div>
@@ -59,9 +85,12 @@
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-default" [disabled]="!f.valid">Rejestracja</button>
+            <p class="alert alert-danger" *ngIf="getErrorStatus() === 400">
+              Użytkownik o takim adresie e-mail lub loginie już istnieje! 
+            </p>
           </div>
         </div>
-        </div>
+        
       </form>
     
   

@@ -12,22 +12,36 @@ import {HttpClientModule} from '@angular/common/http';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  errorStatus : number; 
+  
   @ViewChild('f') signupForm: NgForm;
  
   constructor(private registerService: RegisterService,private router: Router) { }
   ngOnInit() {
   }  
+ 
   onSubmit(f:NgForm ) {
-    console.log(f);
+    
+    console.log(f.value);
     this.registerService.storeUsers(f.value)
       .subscribe(
-      (response) => console.log(response);
-      (error) => console.log(error);
-    );
-    this.signupForm.reset();
-    this.router.navigate(['/login']);
+      (response) => {
+        console.log(response)
+        this.router.navigate(['/login']);
+      },
+      (error) => {
+        this.errorStatus = error.status;
+        console.log(error);
+        this.signupForm.reset();
+      });
+    
+   
+    
+  }
+  getErrorStatus() {
+    return this.errorStatus;
   }
   
-
+  
 }
 
