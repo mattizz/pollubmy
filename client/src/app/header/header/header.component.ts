@@ -1,5 +1,8 @@
+import { DashboardService } from './../../dashboard/dashboard.service';
 import { LoginService } from './../../auth/login/login.service';
 import { Component, OnInit } from '@angular/core';
+import { DashboardComponent } from '../../dashboard/dashboard.component';
+import { User } from '../../dashboard/user-models/user-model';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public loginService: LoginService) { }
+  name: string;
+  constructor(public loginService: LoginService, public dashboardService: DashboardService) { }
 
   ngOnInit() {
+    this.dashboardService.getUser().subscribe(
+      res=>{
+        this.name = res.firstName;
+        console.log(this.name);
+      } 
+    );
   }
   
 }

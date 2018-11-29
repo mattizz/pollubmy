@@ -1,3 +1,4 @@
+import { ChangePasswordComponent } from './dashboard/user-details/change-password/change-password.component';
 import { LoginService } from './auth/login/login.service';
 import { LoginGuard } from './auth/login/login-guard.service';
 import { RegisterComponent } from './auth/register/register.component';
@@ -15,7 +16,9 @@ const routes: Routes = [
     children: [
       {path: '', component: DashboardComponent},
       {path: 'resources', component: FileUploadComponent},
-      {path: 'details',component: UserDetailsComponent}], canActivate: [LoginGuard]}
+      {path: 'details',component: UserDetailsComponent},
+      {path: 'changePassword', component: ChangePasswordComponent}]
+    ,canActivate: [LoginGuard]}
    ]
 
 @NgModule({

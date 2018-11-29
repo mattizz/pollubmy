@@ -17,6 +17,7 @@ import { LessonsDetailsComponent } from './dashboard/user-details/lessons-detail
 import { PostsDetailsComponent } from './dashboard/user-details/posts-details/posts-details.component';
 import { FileUploadComponent } from './dashboard/file-upload/file-upload.component';
 import {AccordionModule} from 'ngx-bootstrap';
+import { ChangePasswordComponent } from './dashboard/user-details/change-password/change-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import {AccordionModule} from 'ngx-bootstrap';
     LessonsDetailsComponent,
     PostsDetailsComponent,
     FileUploadComponent,
+    ChangePasswordComponent,
 
   ],
   imports: [

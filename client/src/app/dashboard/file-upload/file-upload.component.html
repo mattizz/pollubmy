@@ -21,7 +21,7 @@
         <h4 class="modal-title">Udostępnij plik</h4>
         <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
       </div>
-      <form #upload="ngForm" (ngSubmit)="onUpload()">
+      <form #upload="ngForm" (ngSubmit)="onUpload(upload)">
       <div class="modal-body">  
           <div class="form-group">
             <label for="department">Wydział</label>

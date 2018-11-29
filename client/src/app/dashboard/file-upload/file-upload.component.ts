@@ -1,5 +1,6 @@
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-file-upload',
   templateUrl: './file-upload.component.html',
@@ -69,8 +70,10 @@ export class FileUploadComponent implements OnInit {
     this.file = <File>event.target.files[0];
     this.fileName = this.file.name;
   }
-  onUpload(){
+  onUpload(upload: NgForm){
     const data = new FormData;
+    const form = upload.value;  
+    console.log(form);
     data.append('file',this.file, this.file.name)
     this.http.post('/url',data,{
       reportProgress: true,

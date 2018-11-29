@@ -1,3 +1,4 @@
+import { DashboardService } from './../dashboard.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 @Component({
   selector: 'app-user-details',
@@ -15,6 +16,7 @@ export class UserDetailsComponent implements OnInit {
     this.profileDetails.nativeElement.style.display = 'block';
     this.lessonsDetails.nativeElement.style.display = 'none';
     this.postsDetails.nativeElement.style.display = 'none';
+  
   }
 
   selectedDetail(event: any, detailName: string){

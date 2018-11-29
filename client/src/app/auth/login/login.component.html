@@ -1,13 +1,16 @@
 <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-6">
+          <p class="alert alert-success" *ngIf="loginService.isLoggedOut()">
+              Zostałeś pomyślnie wylogowany!
+          </p>
           <form  (ngSubmit)="onLogin(f)" #f="ngForm">
               <div class="form-group">
-                <label class="control-label" for="loginOrEmail">Adres e-mail lub hasło</label>
+                <label class="control-label" for="loginOrEmail">Adres e-mail lub login</label>
                 <input type="text" 
                 class="form-control" 
                 id="loginOrEmail" name="loginOrEmail"  
-                placeholder="Adres email lub hasło" 
+                placeholder="Adres email lub login" 
                 required ngModel
                 #loginOrEmail="ngModel">
                 <p class="emailValidation alert alert-danger" *ngIf="!loginOrEmail.valid && loginOrEmail.touched">
@@ -19,6 +22,7 @@
                 <input type="password" 
                 class="form-control" 
                 id="password" name="password" 
+                placeholder="Hasło"
                 required ngModel
                 #password="ngModel">
                 <p class="passwordValidation alert alert-danger" *ngIf="!password.valid && password.touched">
@@ -26,7 +30,7 @@
                 </p>
               </div>
                 <button type="submit" [disabled]="!(loginOrEmail.valid && password.valid)"class="btn btn-primary">Zaloguj się</button>
-                <p class="wrongEmailOrPassword alert alert-danger" *ngIf="loginService.getErrorStatus() == 401">
+                <p class="wrongEmailOrPassword alert alert-danger" *ngIf="loginService.getErrorStatus() == 401 && !loginService.isLoggedIn()">
                     Niepoprawne dane logowania!
                 </p>
             </form>

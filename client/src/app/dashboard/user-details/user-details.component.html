@@ -2,18 +2,19 @@
   <div class="row justify-content-center">
     <div class="col-lg-3">
       <ul class="list-group" >
-        <li class="list-group-item link active" (click)="selectedDetail($event,'profile-details')">
+        <li class="list-group-item list-group-item-action link"  (click)="selectedDetail($event,'profile-details')">
           <h4>Dane o profilu</h4>
         </li>
-        <li class="list-group-item link" (click)="selectedDetail($event,'lessons-details')">
+        <li class="list-group-item list-group-item-action link" (click)="selectedDetail($event,'lessons-details')">
           <h4>Twoje korepetycje</h4>
         </li>
-        <li class="list-group-item link" (click)="selectedDetail($event,'posts-details')">
+        <li class="list-group-item list-group-item-action link" (click)="selectedDetail($event,'posts-details')">
           <h4>Upublikowane posty</h4>
        </li>
       </ul>
     </div>
-    <div class="col-lg-8">
+    <div class="col-lg-6">
+      <h2 class="text-center">Dane o profilu</h2>
       <div id="profile-details" class="tab active" #profileDetails>
           <app-profile-details></app-profile-details>
       </div>
