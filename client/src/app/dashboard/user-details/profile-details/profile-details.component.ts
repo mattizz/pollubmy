@@ -11,7 +11,9 @@ import { DashboardService } from '../../dashboard.service';
 })
 export class ProfileDetailsComponent implements OnInit {
 
+  disabled = true;
   public user: User[] = [];
+  public currentUser: User;
   public editedUser: User;
   isEdited = false;
   constructor(public dashboardService: DashboardService) { }
@@ -20,6 +22,7 @@ export class ProfileDetailsComponent implements OnInit {
     this.dashboardService.getUser()
     .subscribe(res=>{
       this.user.push(res);
+      this.currentUser = res;
       console.log(res);
     },err=>console.log(err));
   }
@@ -34,11 +37,23 @@ export class ProfileDetailsComponent implements OnInit {
   onEditDetails(put: NgForm){
     const editedUser = put.value;
     
+    if(editedUser.login === this.currentUser.login){
+      editedUser.login = null;
+    }
+    if(editedUser.emailPollub === this.currentUser.emailPollub){
+      editedUser.emailPollub = null;
+    }
+    console.log(editedUser);
+    console.log(editedUser.login);
+    console.log(editedUser.emailPollub);
     this.dashboardService.editUser(editedUser).subscribe(
       res=>{
         this.isEdited = true;
         this.dashboardService.getUser().subscribe(
-          res=>console.log(res)
+          res=>{
+            console.log(res);
+            // window.location.reload();
+          }
         );
       },err=>{
         console.log(err);

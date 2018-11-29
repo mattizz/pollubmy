@@ -1,16 +1,22 @@
 <form  (ngSubmit)="onEditDetails(put)" #put="ngForm">
     <p class="alert alert-success" *ngIf="put.submitted">Zaktualizowano dane</p>
+    
     <h4>Informacje główne</h4>
     <ul class="list-group" *ngFor="let detail of user">
        <li class="list-group-item">
            <h5>Login</h5>
-           <input class="form-control" type="text" name="login"  [(ngModel)]="detail.login">
-       </li>
+           <input class="form-control" type="text" name="login" [(ngModel)]="detail.login">
+        </li>
        <li class="list-group-item">
          <h5>Adres e-mail</h5>
-        <input class="form-control" type="text" name="emailPollub"  [(ngModel)]="detail.emailPollub">
+        <input class="form-control" type="text" name="emailPollub"
+        pattern='^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(pollub.edu)\.pl$'
+        [(ngModel)]="detail.emailPollub" #emailPollub="ngModel">
        </li>
-            <li class="list-group-item">
+       <p class=" alert alert-danger" *ngIf="!emailPollub.valid">
+        Wprowadź poprawny adres e-mail z domeną pollub.edu.pl. 
+      </p>
+        <li class="list-group-item">
             <h5>Imię</h5>
         <input class="form-control" type="text" name="firstName" [(ngModel)]="detail.firstName">
       </li>
@@ -23,7 +29,6 @@
     <h4>Informacje szczegółowe</h4>
     <div ngModelGroup="userDetails">
         <ul class="list-group" *ngFor="let userdetail of filterUserDetails()">
-            <input type="hidden" name="id" [(ngModel)]="userdetail.userDetailsId">
             <li class="list-group-item">
                 <h5>Drugie imię</h5>
                 <input class="form-control" type="text" name="secondName" [(ngModel)]="userdetail.secondName">
@@ -64,7 +69,6 @@
     </div>
     <div ngModelGroup="userAddress">
         <ul class="list-group" *ngFor="let useraddress of filterUserAddress()">
-            <input type="hidden" name="id" [(ngModel)]="useraddress.userAddressId">
             <li class="list-group-item">
                 <h5>Miasto</h5>
                 <input class="form-control" type="text" name="city" [(ngModel)]="useraddress.city">
