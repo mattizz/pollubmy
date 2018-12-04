@@ -6,17 +6,8 @@ import { User } from './user.model';
 @Injectable()
 export class RegisterService {
     errorStatus: number;
-    
     constructor(private http: Http) {}
-    
-    
-        storeUsers(user: User) {
-            
-        return this.http.post('http://localhost:8080/register',user).pipe(map(res=>res.json()));
-        
-                        
-
-        
+        storeUsers(user: User) {    
+        return this.http.post('http://localhost:8080/register',user).pipe(map(res=>res.json()));      
     }
- 
 }
