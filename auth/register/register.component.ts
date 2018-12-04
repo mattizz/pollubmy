@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { RegisterService} from './register.service';
 import { Router } from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
