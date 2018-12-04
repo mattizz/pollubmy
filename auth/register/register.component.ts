@@ -4,8 +4,6 @@ import { RegisterService} from './register.service';
 import { Router } from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 
-
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -13,15 +11,11 @@ import {HttpClientModule} from '@angular/common/http';
 })
 export class RegisterComponent implements OnInit {
   errorStatus : number; 
-  
   @ViewChild('f') signupForm: NgForm;
- 
   constructor(private registerService: RegisterService,private router: Router) { }
   ngOnInit() {
   }  
- 
   onSubmit(f:NgForm ) {
-    
     console.log(f.value);
     this.registerService.storeUsers(f.value)
       .subscribe(
@@ -34,14 +28,8 @@ export class RegisterComponent implements OnInit {
         console.log(error);
         this.signupForm.reset();
       });
-    
-   
-    
   }
   getErrorStatus() {
     return this.errorStatus;
   }
-  
-  
 }
-
