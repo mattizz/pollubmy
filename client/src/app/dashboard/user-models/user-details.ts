@@ -9,6 +9,7 @@ export class UserDetails{
         public albumNumber: number,
         public startDate: string,
         public dateOfBirth: string,
-        public finishDate: string
+        public finishDate: string,
+        public phone: string
     ){}
 }

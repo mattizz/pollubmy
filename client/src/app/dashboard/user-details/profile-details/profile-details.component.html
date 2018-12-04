@@ -32,7 +32,12 @@
             <li class="list-group-item">
                 <h5>Drugie imię</h5>
                 <input class="form-control" type="text" name="secondName" [(ngModel)]="userdetail.secondName">
-                </li>
+            </li>
+            <li class="list-group-item">
+                <h5>Telefon (format - 123456789)</h5>
+                <input class="form-control" type="tel" name="phone" #phone="ngModel" [(ngModel)]="userdetail.phone" pattern="[0-9]{9}">
+                <p class="alert alert-danger" *ngIf="!phone.valid">Wprowadź poprawny numer telefonu</p>
+            </li>
             <li class="list-group-item">
                 <h5>Kierunek</h5>
                 <input class="form-control" type="text" name="specialization" [(ngModel)]="userdetail.specialization">
