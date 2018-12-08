@@ -9,8 +9,6 @@ import java.time.LocalDate;
 @Entity
 public class UserDetails {
 
-    //Fields
-
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
@@ -46,7 +44,7 @@ public class UserDetails {
 
     private LocalDate dateOfBirth;
 
-    // Getters and setters
+    private String phone;
 
     public String getUserDetailsId() {
         return userDetailsId;
@@ -151,4 +149,12 @@ public class UserDetails {
     public void setHobbies(List<HobbyEnum> hobbies) {
         this.hobbies = hobbies;
     }*/
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 }

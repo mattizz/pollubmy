@@ -10,12 +10,11 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class User {
-
-    //Fields
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -34,6 +33,18 @@ public class User {
     @JsonManagedReference
     @OneToOne(mappedBy = "userIdFK", cascade = CascadeType.ALL)
     private UserDetails userDetails = new UserDetails();
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "userIdFK", cascade = CascadeType.ALL)
+    private List<PrivateLessonOffer> privateLessonOffers = new ArrayList<>();
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "userIdFk", cascade = CascadeType.ALL)
+    private List<ForumPost> forumPosts = new ArrayList<>();
+
+    @JsonManagedReference(value = "user-comment")
+    @OneToMany(mappedBy = "userIdFk", cascade = CascadeType.ALL)
+    private List<Comment> comments = new ArrayList<>();
 
     @NotNull
     @NotEmpty
@@ -61,14 +72,10 @@ public class User {
 
     private boolean isActive = true;
 
-    // Constructor
-
     public User() {
         this.getUserDetails().setUserIdFK(this);
         this.getUserAddress().setUserIdFK(this);
     }
-
-    // Getters and setters
 
     public String getUserId() {
         return userId;
@@ -152,6 +159,33 @@ public class User {
         isActive = active;
     }
 
+    @JsonIgnore
+    public List<PrivateLessonOffer> getPrivateLessonOffers() {
+        return privateLessonOffers;
+    }
+
+    public void setPrivateLessonOffers(List<PrivateLessonOffer> privateLessonOffers) {
+        this.privateLessonOffers = privateLessonOffers;
+    }
+
+    @JsonIgnore
+    public List<ForumPost> getForumPosts() {
+        return forumPosts;
+    }
+
+    public void setForumPosts(List<ForumPost> forumPosts) {
+        this.forumPosts = forumPosts;
+    }
+
+    @JsonIgnore
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -159,6 +193,9 @@ public class User {
                 ", userRole=" + userRole +
                 ", userAddress=" + userAddress +
                 ", userDetails=" + userDetails +
+                ", privateLessonOffers=" + privateLessonOffers +
+                ", forumPosts=" + forumPosts +
+                ", comments=" + comments +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", login='" + login + '\'' +
