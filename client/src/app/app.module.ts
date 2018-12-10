@@ -1,3 +1,4 @@
+import { AddpostComponent } from './dashboard/posts/addpost/addpost.component';
 import { AppRoutingModule } from './app.routing.module';
 import { LoginService } from './auth/login/login.service';
 import { LoginGuard } from './auth/login/login-guard.service';
@@ -18,6 +19,7 @@ import { PostsDetailsComponent } from './dashboard/user-details/posts-details/po
 import { FileUploadComponent } from './dashboard/file-upload/file-upload.component';
 import {AccordionModule} from 'ngx-bootstrap';
 import { ChangePasswordComponent } from './dashboard/user-details/change-password/change-password.component';
+import { PostsComponent } from './dashboard/posts/posts.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +34,8 @@ import { ChangePasswordComponent } from './dashboard/user-details/change-passwor
     PostsDetailsComponent,
     FileUploadComponent,
     ChangePasswordComponent,
+    PostsComponent,
+    AddpostComponent
 
   ],
   imports: [

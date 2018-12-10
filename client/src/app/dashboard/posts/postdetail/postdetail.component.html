@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="list-group">
+              <a role="button" class="list-group-item">
+                  <div class="row">
+                      <div class="col-sm-1 pointSection">
+                          <h2 [ngStyle]="{color: addPointStyle}" (click)="addPoint()"><b>+</b></h2>
+                          <h3>{{points}}</h3>
+                          <h2 [ngStyle]="{color: subtractPointStyle}" class="" (click)="subtractPoint()"><b>-</b></h2>
+                        </div>
+                        <div class="col-sm-11 postSection">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <h3 class="category">{{selectedPost?.category}}</h3>
+                                  </div>
+                                  <div class="col-sm">
+                                    <p class="date text-right">Upublikowano przez <strong>{{selectedPost?.userLogin}}</strong> w dniu {{selectedPost?.addPostTime}}</p>
+                                  </div>
+                            </div>
+                            <!-- <h2 class="title">{{selectedPost.title}}</h2> -->
+                            <h5 class="text">{{selectedPost?.postText}}</h5>
+                            <button type="button" class="btn btn-info">
+                              <span class="badge badge-light">x</span> Komentarzy
+                            </button>
+                            <hr>
+                            <h4>Skomentuj</h4>
+                            <div class="textarea">
+                              <form #comment="ngForm" (ngSubmit)="addComment(comment)">
+                                  <textarea name="text" #text="ngModel" ngModel placeholder="Co masz na myśli..." id="" cols="30" rows="5" class="form-control"></textarea>
+                                  <button class="btn btn-dark" type="submit">Skomentuj</button>
+                              </form>
+                            </div>
+                            <hr>
+                            <div class="sortComment">
+                                      <h5>Sortuj komentarze wg: 
+                                          <select class="form-control" (change)="selectedSort($event)" name="filterComments" id="filterComments" [(ngModel)]="filterComments">
+                                            <option value="popular">Najbardziej popularne</option>
+                                            <option value="new">Najnowsze</option>
+                                            <option value="old">Najstarsze</option>
+                                          </select>
+                                        </h5>
+                                  </div>
+                                <!-- <div class="commentSection" *ngFor="let comment of comments">
+                                  <div class="list-group">
+                                    <div class="list-group-item">
+                                      <div class="row">
+                                          <div class="col">
+                                              <h5>+</h5>
+                                              <h5>{{comment.point}}</h5>
+                                              <h5>-</h5>
+                                            </div>
+                                            <div class="col-11">
+                                                <p class="text-left"> Użytkownik <strong>Login</strong> {{comment.date | date:'short'}}</p>
+                                                <h5>{{comment.text}}</h5>
+                                            </div>
+                                      </div>
+                                      </div>
+                                    </div>
+                                </div>  -->
+                          </div> 
+                  </div>
+              </a>
+          </div>
+      </div>    
+    </div>
+    <div class="row justify-content-center">
+      <button class="btn btn-default" routerLink="/dashboard/posts">Powrót do postów</button>
+    </div>
+  </div>
+  

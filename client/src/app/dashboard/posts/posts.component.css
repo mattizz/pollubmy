@@ -1,0 +1,20 @@
+.container{
+    margin-top: 5%;
+
+}
+.title{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.text{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.post{
+    cursor: pointer;
+}
+.pointsection{
+    background-color: lightblue;
+}

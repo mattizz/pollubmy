@@ -1,3 +1,5 @@
+import { AddpostComponent } from './dashboard/posts/addpost/addpost.component';
+import { PostsComponent } from './dashboard/posts/posts.component';
 import { ChangePasswordComponent } from './dashboard/user-details/change-password/change-password.component';
 import { LoginService } from './auth/login/login.service';
 import { LoginGuard } from './auth/login/login-guard.service';
@@ -17,7 +19,9 @@ const routes: Routes = [
       {path: '', component: DashboardComponent},
       {path: 'resources', component: FileUploadComponent},
       {path: 'details',component: UserDetailsComponent},
-      {path: 'changePassword', component: ChangePasswordComponent}]
+      {path: 'changePassword', component: ChangePasswordComponent},
+      {path: 'posts', component: PostsComponent},
+      {path: 'addpost', component: AddpostComponent}]
     ,canActivate: [LoginGuard]}
    ]
 
