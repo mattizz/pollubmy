@@ -13,6 +13,8 @@ public class ForumPostDTO {
 
     private String category;
 
+    private String title;
+
     private LocalDateTime addPostTime;
 
     private Integer points;
@@ -75,5 +77,13 @@ public class ForumPostDTO {
 
     public void setUserLogin(String userLogin) {
         this.userLogin = userLogin;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

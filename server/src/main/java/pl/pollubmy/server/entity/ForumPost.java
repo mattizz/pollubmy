@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,6 +30,10 @@ public class ForumPost {
     @OneToMany(mappedBy = "forumPostIdFk", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
+    @OneToMany(mappedBy = "forumPostIdFk", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<ForumPostRating> forumPostRatings = new ArrayList<>();
+
     private String category;
 
     @DateTimeFormat
@@ -39,6 +44,8 @@ public class ForumPost {
     private String postText;
 
     private boolean isActive = true;
+
+    private String title;
 
     public String getForumPostId() {
         return forumPostId;
@@ -90,7 +97,6 @@ public class ForumPost {
         this.postText = postText;
     }
 
-
     public List<Comment> getComments() {
         return comments;
     }
@@ -105,5 +111,21 @@ public class ForumPost {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public List<ForumPostRating> getForumPostRatings() {
+        return forumPostRatings;
+    }
+
+    public void setForumPostRatings(List<ForumPostRating> forumPostRatings) {
+        this.forumPostRatings = forumPostRatings;
     }
 }
