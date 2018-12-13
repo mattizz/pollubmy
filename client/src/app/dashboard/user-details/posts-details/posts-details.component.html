@@ -1,8 +1,9 @@
 <ul class="list-group">
     <li class="list-group-item">
         <h3>Twoje posty</h3>
+        <p class="alert alert-danger" *ngIf="errorStatus !== 400">Nie masz żadnych upublikowanych postów</p>
         <div class="list-group" *ngFor="let post of posts" >
-            <a routerLink="./{{post.forumPostId}}" role="button" class="list-group-item list-group-item-action post">
+            <a routerLink="../posts/{{post.forumPostId}}" role="button" class="list-group-item list-group-item-action post">
                 <div class="row">
                     <div class="col-sm-1 pointsection">
                         <h3>{{post.points}}</h3>
@@ -21,9 +22,12 @@
                           <button type="button" class="btn btn-info">
                             <span class="badge badge-light">X</span> Komentarzy
                           </button>
+                          
                         </div>    
                 </div>
             </a>
+            <button type="button" routerLink="../posts/{{post.forumPostId}}/editpost"class="btn btn-primary">Edytuj post</button>
+            <button type="button" (click)="deletePost(post.forumPostId)" class="btn btn-danger">Usuń post</button>
         </div>
     </li>
 </ul>

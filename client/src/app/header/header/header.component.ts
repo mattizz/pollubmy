@@ -11,15 +11,13 @@ import { User } from '../../dashboard/user-models/user-model';
 })
 export class HeaderComponent implements OnInit {
 
-  name: string;
   user: User;
   constructor(public loginService: LoginService, public dashboardService: DashboardService) { }
 
   ngOnInit() {
     this.dashboardService.getUser().subscribe(
       res=>{
-        this.name = res.firstName;
-        console.log(this.name);
+        this.user = res;
       } 
     );
   }

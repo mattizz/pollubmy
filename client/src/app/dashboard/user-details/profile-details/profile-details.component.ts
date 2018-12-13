@@ -49,10 +49,10 @@ export class ProfileDetailsComponent implements OnInit {
     this.dashboardService.editUser(editedUser).subscribe(
       res=>{
         this.isEdited = true;
+        this.ngOnInit();
         this.dashboardService.getUser().subscribe(
           res=>{
             console.log(res);
-            // window.location.reload();
           }
         );
       },err=>{

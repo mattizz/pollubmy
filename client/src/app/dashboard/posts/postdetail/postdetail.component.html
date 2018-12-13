@@ -5,9 +5,9 @@
               <a role="button" class="list-group-item">
                   <div class="row">
                       <div class="col-sm-1 pointSection">
-                          <h2 [ngStyle]="{color: addPointStyle}" (click)="addPoint()"><b>+</b></h2>
-                          <h3>{{points}}</h3>
-                          <h2 [ngStyle]="{color: subtractPointStyle}" class="" (click)="subtractPoint()"><b>-</b></h2>
+                          <button class="btn btn-light" [ngStyle]="{color: addPointStyle}" [disabled]="pointSubtracted" (click)="addPostPoint()"><h2>+</h2></button>
+                          <button class="btn btn-light"><h2>{{points}}</h2></button>
+                          <button class="btn btn-light" [ngStyle]="{color: subtractPointStyle}" [disabled]="pointAdded" (click)="subtractPostPoint()"><h2>-</h2></button>
                         </div>
                         <div class="col-sm-11 postSection">
                             <div class="row">
@@ -15,49 +15,61 @@
                                     <h3 class="category">{{selectedPost?.category}}</h3>
                                   </div>
                                   <div class="col-sm">
-                                    <p class="date text-right">Upublikowano przez <strong>{{selectedPost?.userLogin}}</strong> w dniu {{selectedPost?.addPostTime}}</p>
+                                    <p class="date text-right">Upublikowano przez <strong>{{selectedPost?.userLogin}}</strong> w dniu {{selectedPost?.addPostTime | date:'d/M/yy - H:mm'}}</p>
                                   </div>
                             </div>
-                            <!-- <h2 class="title">{{selectedPost.title}}</h2> -->
+                            <h2 class="title">{{selectedPost?.title}}</h2>
                             <h5 class="text">{{selectedPost?.postText}}</h5>
+                            <hr>
                             <button type="button" class="btn btn-info">
-                              <span class="badge badge-light">x</span> Komentarzy
+                              <span class="badge badge-light">{{commentsLength}}</span> Komentarzy
                             </button>
                             <hr>
                             <h4>Skomentuj</h4>
                             <div class="textarea">
                               <form #comment="ngForm" (ngSubmit)="addComment(comment)">
-                                  <textarea name="text" #text="ngModel" ngModel placeholder="Co masz na myśli..." id="" cols="30" rows="5" class="form-control"></textarea>
-                                  <button class="btn btn-dark" type="submit">Skomentuj</button>
+                                  <textarea name="text" #text="ngModel" required ngModel placeholder="Co masz na myśli..." id="" cols="30" rows="5" class="form-control"></textarea>
+                                  <button class="btn btn-dark float-right" [disabled]="!text.valid">Skomentuj</button>
                               </form>
                             </div>
-                            <hr>
                             <div class="sortComment">
                                       <h5>Sortuj komentarze wg: 
-                                          <select class="form-control" (change)="selectedSort($event)" name="filterComments" id="filterComments" [(ngModel)]="filterComments">
+                                          <select class="form-control" (change)="selectedSort($event)" name="filterComments" id="filterComments">
                                             <option value="popular">Najbardziej popularne</option>
                                             <option value="new">Najnowsze</option>
                                             <option value="old">Najstarsze</option>
                                           </select>
                                         </h5>
                                   </div>
-                                <!-- <div class="commentSection" *ngFor="let comment of comments">
+                                <div class="commentSection" *ngFor="let comment of comments">
                                   <div class="list-group">
                                     <div class="list-group-item">
                                       <div class="row">
-                                          <div class="col">
-                                              <h5>+</h5>
-                                              <h5>{{comment.point}}</h5>
-                                              <h5>-</h5>
+                                          <div class="col-sm-1">
+                                              <button class="btn btn-light" [ngStyle]="{color: commentAddPointStyle}" [disabled]="commentPointSubtracted" (click)="addCommentPoint(comment.commentId)"><h5>+</h5></button>
+                                              <button class="btn btn-light"><h5>{{comment.points}}</h5></button>
+                                              <button class="btn btn-light" [ngStyle]="{color: commentSubtractPointStyle}" [disabled]="commentPointAdded" (click)="subtractCommentPoint(comment.commentId)"><h5>-</h5></button>
                                             </div>
-                                            <div class="col-11">
-                                                <p class="text-left"> Użytkownik <strong>Login</strong> {{comment.date | date:'short'}}</p>
-                                                <h5>{{comment.text}}</h5>
+                                            <div class="col-7">
+                                                <p class="text-left"> Użytkownik <strong>{{comment.userLogin}}</strong> - {{comment.postTime | date:'d/M/yy - H:m'}}</p>
+                                                <div class="editPost" *ngIf="editable && comment.commentId.toString() === selectedCommentId">
+                                                  <div class="col-sm-9">
+                                                      <textarea [(ngModel)]="comment.text"name="text" id="text" cols="50" rows="2"></textarea>
+                                                  </div>
+                                                  <div class="col-sm-1">
+                                                      <button class="btn btn-success" (click)="editComment(comment.text)">Zatwierdź</button>
+                                                  </div>
+                                                </div>
+                                                <h5 *ngIf="!editable">{{comment.text}}</h5>
+                                            </div>
+                                            <div class="col-2">
+                                              <button (click)="allowEdit(comment.commentId)" class="btn btn-default float-right">Edytuj</button>
+                                              <button [hidden]="comment.owner !== true" (click)="deleteComment(comment.commentId)" class="btn btn-danger float-right">X</button>
                                             </div>
                                       </div>
                                       </div>
                                     </div>
-                                </div>  -->
+                                </div> 
                           </div> 
                   </div>
               </a>

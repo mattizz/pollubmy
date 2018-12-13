@@ -18,7 +18,7 @@
            </li>
       </ng-template> 
         <li class="nav-item" >
-          <a role="button" class="userLogin" routerLink="/dashboard/details" *ngIf="loginService.isLoggedIn()">Witaj, <b>{{name}}</b>!</a>
+          <a role="button" class="userLogin" routerLink="/dashboard/details" *ngIf="loginService.isLoggedIn()">Witaj, <b>{{user?.firstName}}</b>!</a>
         </li>   
         <li class="nav-item" >
           <a role="button" class="userLogin" routerLink="/dashboard/resources" *ngIf="loginService.isLoggedIn()">Materiały dydaktyczne</a>

@@ -1,9 +1,10 @@
 export class Comment{
     constructor(
-        public commentID: number,
+        public commentId: string,
+        public owner: boolean,
+        public points: number,
+        public postTime: string,
         public text: string,
-        public point: number,
-        public date: string,
-        public postID: number
+        public userLogin: string
     ){}
 }

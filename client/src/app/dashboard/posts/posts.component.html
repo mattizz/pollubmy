@@ -15,7 +15,7 @@
                     <button class="btn btn-success float-right" routerLink="../addpost">Dodaj post</button>
                 </div>
                 <div class="col-2">
-                  <button class="btn btn-default float-right" routerLink="../addpost">Zobacz swoje posty</button>
+                  <button class="btn btn-default float-right" routerLink="../details">Zobacz swoje posty</button>
 
                 </div>
               </div>
@@ -37,10 +37,10 @@
                                                 <p class="date text-right">Upublikowano przez {{post.userLogin}} w dniu {{post.addPostTime}}</p>
                                               </div>
                                         </div>
-                                        <!-- <h2 class="title">{{post.title}}</h2> -->
+                                        <h2 class="title">{{post.title}}</h2>
                                         <h4 class="text">{{post.postText}}</h4>
-                                        <button type="button" class="btn btn-info">
-                                          <span class="badge badge-light">X</span> Komentarzy
+                                        <button type="button" class="btn btn-info float-right">
+                                          <span class="badge badge-light">{{post.commentsDTO.length}}</span> Komentarzy
                                         </button>
                                       </div>    
                               </div>

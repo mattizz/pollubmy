@@ -26,11 +26,12 @@ export class PostsService {
     });
   }
 
-  addPost(category: string, postText: string){
+  addPost(category: string,title: string, postText: string){
     return this.http.post('http://localhost:8080/post',
     {
-      category: category,
-      postText: postText
+       title: title,
+       category: category,
+       postText: postText
     },{
       headers: {
       'Authorization' : localStorage.getItem('token'),
@@ -38,12 +39,69 @@ export class PostsService {
       }
     });
   }
-  deletePost(postId: string){
-    return this.http.patch('http://localhost:8080/post/'+postId,'',{
+  editPost(forumPostId: string, title: string, postText: string){
+    return this.http.put('http://localhost:8080/post',
+    {
+       forumPostId: forumPostId,
+       title: title,
+       postText: postText
+    },{
+      headers: {
+      'Authorization' : localStorage.getItem('token'),
+      'Content-Type' : 'application/json'
+      }
+    });
+  }
+  ratePost(postId: string, rate: string){
+      return this.http.patch('http://localhost:8080/post/rate/'+postId+'?rate='+rate,'',{
+        responseType: 'text',
+        headers: {
+        'Authorization' : localStorage.getItem('token')
+        }
+      });
+  }
+  rateComment(commentId: string, rate: string){
+    return this.http.patch('http://localhost:8080/comment/rate/'+commentId+'?rate='+rate,'',{
+        responseType: 'text',
+        headers: {
+        'Authorization' : localStorage.getItem('token')
+        }
+      });
+  }
+  deletePost(forumPostId: string){
+    return this.http.patch('http://localhost:8080/post/'+forumPostId,'',{
       headers: {
       'Authorization' : localStorage.getItem('token')
       }
     });
   }
+  addComment(forumPostId: string, text: string){
+    return this.http.post('http://localhost:8080/comment/'+forumPostId,{
+      text: text
+    },{
+      headers: {
+      'Authorization' : localStorage.getItem('token'),
+      'Content-Type' : 'application/json'
+      }
+    });
+  }
+  deleteComment(commentId: string){
+    return this.http.patch('http://localhost:8080/comment/'+commentId,'',{
+      headers: {
+      'Authorization' : localStorage.getItem('token')
+      }
+    });
+  }
+  editComment(commentId: string, text: string){
+    return this.http.put('http://localhost:8080/comment/'+commentId,{
+      text: text
+    },{
+      headers: {
+      'Authorization' : localStorage.getItem('token'),
+      'Content-Type' : 'application/json'
+      }
+    });
+  }
+
 }
 

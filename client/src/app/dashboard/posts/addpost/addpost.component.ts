@@ -16,8 +16,9 @@ export class AddpostComponent implements OnInit {
   }
   addPost(post: NgForm){
     const value = post.value;
+    console.log(value);
     if(confirm('Czy na pewno chcesz opublikować post?')){
-      this.postService.addPost(value.category,value.text).subscribe(
+      this.postService.addPost(value.category,value.title,value.text).subscribe(
         res=>{
           console.log(res);
           this.router.navigate(['/dashboard/posts']);

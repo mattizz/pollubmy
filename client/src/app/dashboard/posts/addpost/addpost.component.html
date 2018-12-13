@@ -6,15 +6,18 @@
             <hr>
             <form #post="ngForm" (ngSubmit)="addPost(post)">
               <label for="category">Wybierz kategorię</label>
-              <select name="category" id="category" required ngModel class="form-control">
+              <select name="category" id="category" required ngModel class="form-control" #category="ngModel">
                 <option value="Informatyka">Informatyka</option>
               </select>
+              <p class="alert alert-danger" *ngIf="!category.valid && category.touched">Wybierz kategorię</p>
               <hr>
-              <!-- <label for="title">Tytuł</label>
-              <input type="text" class="form-control"name="title" id="title" required ngModel> -->
+              <label for="title">Tytuł</label>
+              <input type="text" name="title" id="title" class="form-control" required ngModel #title="ngModel">
+              <p class="alert alert-danger" *ngIf="!title.valid && title.touched">Uzupełnij tytuł posta</p>
               <label for="text">Treść</label>
-              <textarea name="text" id="text" class="form-control" cols="30" rows="4" required ngModel></textarea>
-              <button class="btn btn-info float-right">Opublikuj</button>
+              <textarea name="text" id="text" class="form-control" cols="30" rows="4" required ngModel #text="ngModel"></textarea>
+              <p class="alert alert-danger" *ngIf="!text.valid && text.touched">Post musi zawierać treść!</p>
+              <button [disabled]="!(category.valid && title.valid && text.valid)"class="btn btn-info float-right">Opublikuj</button>
             </form>
           </div>
       </div>

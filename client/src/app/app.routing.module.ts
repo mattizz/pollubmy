@@ -1,3 +1,5 @@
+import { EditpostComponent } from './dashboard/posts/editpost/editpost.component';
+import { PostdetailComponent } from './dashboard/posts/postdetail/postdetail.component';
 import { AddpostComponent } from './dashboard/posts/addpost/addpost.component';
 import { PostsComponent } from './dashboard/posts/posts.component';
 import { ChangePasswordComponent } from './dashboard/user-details/change-password/change-password.component';
@@ -15,13 +17,16 @@ const routes: Routes = [
     {path: 'register', component: RegisterComponent},
     {path: 'login', component: LoginComponent},
     {path: 'dashboard',
-    children: [
-      {path: '', component: DashboardComponent},
-      {path: 'resources', component: FileUploadComponent},
-      {path: 'details',component: UserDetailsComponent},
-      {path: 'changePassword', component: ChangePasswordComponent},
-      {path: 'posts', component: PostsComponent},
-      {path: 'addpost', component: AddpostComponent}]
+        children: [
+          {path: '', component: DashboardComponent},
+          {path: 'resources', component: FileUploadComponent},
+          {path: 'details',component: UserDetailsComponent},
+          {path: 'changePassword', component: ChangePasswordComponent},
+          {path: 'posts', component: PostsComponent, children:[
+            {path: ':id', component: PostdetailComponent},
+            {path: ':id/editpost', component: EditpostComponent}
+          ]},
+          {path: 'addpost', component: AddpostComponent}]
     ,canActivate: [LoginGuard]}
    ]
 
