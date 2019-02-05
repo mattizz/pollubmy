@@ -24,6 +24,7 @@ public class RestHandlerException extends ResponseEntityExceptionHandler {
             ForumPostNotFoundException.class,
             WrongRatingException.class,
             CommentNotFoundException.class,
+            HelpInStudyNotFoundException.class
     })
     public ResponseEntity<?> handleException(HttpServletRequest httpServletRequest, Exception ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
@@ -34,9 +35,9 @@ public class RestHandlerException extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
-//    @ExceptionHandler(value = {MultipartException.class, FileUploadBase.FileSizeLimitExceededException.class, IllegalStateException.class})
-//    public ResponseEntity<?> handleTooBigFileException(Exception ex) {
-//        return new ResponseEntity<>("File is too big to upload", HttpStatus.PAYLOAD_TOO_LARGE);
-//    }
+    @ExceptionHandler(value = {MultipartException.class, FileUploadBase.FileSizeLimitExceededException.class, IllegalStateException.class})
+    public ResponseEntity<?> handleTooBigFileException(Exception ex) {
+        return new ResponseEntity<>("File is too big to upload", HttpStatus.PAYLOAD_TOO_LARGE);
+    }
 }
 
