@@ -1,7 +1,5 @@
-import { LoginService } from './../auth/login/login.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UserDetails } from './user-models/user-details';
 import { Observable } from 'rxjs';
 import { User } from './user-models/user-model';
 import {Location} from '@angular/common';
@@ -9,6 +7,7 @@ import {Location} from '@angular/common';
   providedIn: 'root'
 })
 export class DashboardService {
+
   errorMessage = 'Niepoprawne stare hasło';
   url = 'http://localhost:8080/user';
   constructor(private http: HttpClient, public location: Location) { }
@@ -23,6 +22,7 @@ export class DashboardService {
       headers: {'Authorization' : localStorage.getItem('token')}
     })
   }
+  
   changePassword(newPassword: string){
     return this.http.patch(this.url +'/updatePassword',newPassword,{
       headers: {

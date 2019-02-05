@@ -6,10 +6,11 @@ import { DashboardService } from '../../dashboard/dashboard.service';
   providedIn: 'root'
 })
 export class LoginService {
+  
+  constructor(private http: HttpClient, private router: Router) { }
+  
   token: string;
   errorStatus: number;
-  constructor(private http: HttpClient, private router: Router, private dashboardService: DashboardService) { }
-
   logInUser(loginOrEmail: string, password: string){ 
     return this.http.post<any>('http://localhost:8080/login',{
       loginOrEmail : loginOrEmail,
@@ -20,7 +21,7 @@ export class LoginService {
         console.log(res);
         this.token = res.headers.get("Authorization");
         localStorage.setItem('token', this.token);
-        this.router.navigate(['./dashboard']);
+        this.router.navigate(['./dashboard/details']);
         this.isLoggedIn();
       },
       (err)=>{

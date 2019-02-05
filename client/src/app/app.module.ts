@@ -1,3 +1,9 @@
+import { PrivatelessonsService } from './dashboard/privatelessons/privatelessons.service';
+import { CompareValidatorDirective } from './shared/compare-validator.directive';
+import { NgbdModaladdAsTeacher } from './dashboard/privatelessons/modal-addAsTeacher';
+import { NgbdModaladdAsStudent } from './dashboard/privatelessons/modal-addAsStudent';
+import { AddprivatelessonComponent } from './dashboard/privatelessons/addprivatelesson/addprivatelesson.component';
+import { RegisterService } from './auth/register/register.service';
 import { PostdetailComponent } from './dashboard/posts/postdetail/postdetail.component';
 import { AddpostComponent } from './dashboard/posts/addpost/addpost.component';
 import { AppRoutingModule } from './app.routing.module';
@@ -18,10 +24,16 @@ import { ProfileDetailsComponent } from './dashboard/user-details/profile-detail
 import { LessonsDetailsComponent } from './dashboard/user-details/lessons-details/lessons-details.component';
 import { PostsDetailsComponent } from './dashboard/user-details/posts-details/posts-details.component';
 import { FileUploadComponent } from './dashboard/file-upload/file-upload.component';
-import {AccordionModule} from 'ngx-bootstrap';
 import { ChangePasswordComponent } from './dashboard/user-details/change-password/change-password.component';
 import { PostsComponent } from './dashboard/posts/posts.component';
 import { EditpostComponent } from './dashboard/posts/editpost/editpost.component';
+import { FileDetailsComponent } from './dashboard/user-details/file-details/file-details.component';
+import { PrivatelessonsComponent } from './dashboard/privatelessons/privatelessons.component';
+import { HttpModule } from '@angular/http';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,17 +51,25 @@ import { EditpostComponent } from './dashboard/posts/editpost/editpost.component
     PostsComponent,
     AddpostComponent,
     PostdetailComponent,
-    EditpostComponent
-
+    EditpostComponent,
+    FileDetailsComponent,
+    PrivatelessonsComponent,
+    AddprivatelessonComponent,
+    NgbdModaladdAsStudent,
+    NgbdModaladdAsTeacher,
+    CompareValidatorDirective,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     HttpClientModule,
     AppRoutingModule,
-    AccordionModule.forRoot()
+    NgbModule,
+    ModalModule.forRoot(),
+    TabsModule.forRoot()
   ],
-  providers: [LoginService,LoginGuard],
+  providers: [LoginService, RegisterService,HeaderComponent,LoginGuard, PrivatelessonsService, NgbCarouselConfig],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

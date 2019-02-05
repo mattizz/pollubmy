@@ -1,6 +1,11 @@
+<div class="row justify-content-center">
+    <div class="jumbotron bg-dark">
+        <p class="text-white">W zakładce <strong>Dane o profilu</strong> możesz podglądać, edytować swoje dane lub zmienić hasło</p>
+    </div>
+</div>
 <form  (ngSubmit)="onEditDetails(put)" #put="ngForm">
     <p class="alert alert-success" *ngIf="put.submitted">Zaktualizowano dane</p>
-    
+    <h2 class="text-center">Dane o profilu</h2>
     <h4>Informacje główne</h4>
     <ul class="list-group" *ngFor="let detail of user">
        <li class="list-group-item">
@@ -44,11 +49,11 @@
             </li>
             <li class="list-group-item">
                 <h5>Rok</h5>
-                <input class="form-control" type="text" name="year" [(ngModel)]="userdetail.year">
+                <input class="form-control" type="number" name="year" [(ngModel)]="userdetail.year">
             </li>
             <li class="list-group-item">
                 <h5>Semestr</h5>
-                <input class="form-control" type="text" name="term" [(ngModel)]="userdetail.term">
+                <input class="form-control" type="number" name="term" [(ngModel)]="userdetail.term">
             </li>
             <li class="list-group-item">
                 <h5>Stopień naukowy</h5>
@@ -56,7 +61,7 @@
             </li>
             <li class="list-group-item">
                 <h5>Numer albumu</h5>
-                <input class="form-control" type="text" name="albumNumber" [(ngModel)]="userdetail.albumNumber">
+                <input class="form-control" type="number" name="albumNumber" ngModel [(ngModel)]="userdetail.albumNumber">
             </li>
             <li class="list-group-item">
                 <h5>Data urodzenia</h5>

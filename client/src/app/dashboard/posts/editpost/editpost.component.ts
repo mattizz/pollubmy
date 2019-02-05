@@ -41,11 +41,16 @@ export class EditpostComponent implements OnInit {
     if(confirm('Czy na pewno chcesz zedytować ten post?')){
       this.postService.editPost(this.selectedPostId,value.title,value.text).subscribe(
         res=>{
-          console.log(res);
           this.router.navigate(['/dashboard/posts/'+this.selectedPostId]);
+        }, err=>{
+          console.log(err);
         }
       );
     }
+  }
+  return(){
+    this.router.navigate(['/dashboard/posts']);
+    this.postService.getAllPosts();
   }
 }
 

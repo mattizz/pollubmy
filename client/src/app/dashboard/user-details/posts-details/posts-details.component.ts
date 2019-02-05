@@ -16,19 +16,23 @@ export class PostsDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.postService.getUserPosts().subscribe(
-     res=>{
+     res =>{
        this.posts = res;
      },
-     err=>console.log(err)
+     err =>{
+       this.errorStatus = err.status;}
     );
   }
-  deletePost(postId: string){
-    console.log(postId);
+  deletePost(forumPostId: string){
+    console.log(forumPostId);
     if(confirm('Czy na pewno chcesz usunąć ten post?')){
-      this.postService.deletePost(postId).subscribe(
+      if(this.posts.length === 1){
+        this.posts = [];
+      }
+      this.postService.deletePost(forumPostId).subscribe(
         res=>{
           console.log(res);
-          this.router.navigate(['/dashboard/posts']);
+          this.ngOnInit();
         },
         err=>{
           console.log(err);

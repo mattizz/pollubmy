@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
 })
 export class AddpostComponent implements OnInit {
 
+  categories: string[] = [
+    'Wolny temat','Wydarzenia','Nauka','Materiały'
+  ];
   constructor(private postService: PostsService, private router: Router) { }
 
   ngOnInit() {

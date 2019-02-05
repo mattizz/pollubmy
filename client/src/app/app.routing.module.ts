@@ -1,3 +1,5 @@
+import { StartComponent } from './auth/start/start.component';
+import { PrivatelessonsComponent } from './dashboard/privatelessons/privatelessons.component';
 import { EditpostComponent } from './dashboard/posts/editpost/editpost.component';
 import { PostdetailComponent } from './dashboard/posts/postdetail/postdetail.component';
 import { AddpostComponent } from './dashboard/posts/addpost/addpost.component';
@@ -13,7 +15,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserDetailsComponent } from './dashboard/user-details/user-details.component';
 import { FileUploadComponent } from './dashboard/file-upload/file-upload.component';
 const routes: Routes = [
-    {path: '', redirectTo: 'login', pathMatch: 'full'},
+    {path: '', redirectTo: 'start', pathMatch: 'full'},
+    {path: 'start', component: StartComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'login', component: LoginComponent},
     {path: 'dashboard',
@@ -21,6 +24,7 @@ const routes: Routes = [
           {path: '', component: DashboardComponent},
           {path: 'resources', component: FileUploadComponent},
           {path: 'details',component: UserDetailsComponent},
+          {path: 'privatelessons', component: PrivatelessonsComponent},
           {path: 'changePassword', component: ChangePasswordComponent},
           {path: 'posts', component: PostsComponent, children:[
             {path: ':id', component: PostdetailComponent},

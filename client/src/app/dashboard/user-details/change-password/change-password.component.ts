@@ -3,7 +3,7 @@ import { DashboardService } from './../../dashboard.service';
 import { Router } from '@angular/router';
 import { NgForm, FormsModule } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import {Location} from '@angular/common'
+import { Location } from '@angular/common'
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
@@ -12,32 +12,29 @@ import {Location} from '@angular/common'
 export class ChangePasswordComponent implements OnInit {
 
   errorStatus: number;
-  constructor(private router: Router, private dashboardService: DashboardService,private location: Location, private loginService: LoginService) { }
+  constructor(private router: Router, private dashboardService: DashboardService, private location: Location, private loginService: LoginService) { }
 
   ngOnInit() {
   }
-  
-  changePassword(f: NgForm){
+
+  changePassword(f: NgForm) {
     console.log(f);
-    const newPassword = f.value;
+    const newPassword = f.value
     console.log(newPassword);
-    if(confirm('Czy na pewno chcesz zmienić hasło? Zostaniesz przekierowany do strony logowania!')){
+    if (confirm('Czy na pewno chcesz zmienić hasło? Zostaniesz przekierowany do strony logowania!')) {
       this.dashboardService.changePassword(newPassword).subscribe(
-        res=>{
-          console.log(res);
+        res => {
           this.loginService.logoutUser();
         },
-        err=>{
-          console.log(err);
+        err => {
           this.errorStatus = err.status;
-       
-    });
+        });
     }
   }
-  getErrorStatus(){
+  getErrorStatus() {
     return this.errorStatus;
   }
-  backClicked(){
+  backClicked() {
     this.location.back();
   }
 }

@@ -9,6 +9,7 @@ export class Post{
         public points: number,
         public postText: string,
         public title: string,
-        public userLogin: string
+        public userLogin: string,
+        public rate: string
     ){}
 }

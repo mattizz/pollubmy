@@ -1,6 +1,4 @@
-import { FormsModule, NgForm } from '@angular/forms';
-import { UserAddress } from './../../user-models/user-address';
-import { UserDetails } from './../../user-models/user-details';
+import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../user-models/user-model';
 import { DashboardService } from '../../dashboard.service';
@@ -20,42 +18,37 @@ export class ProfileDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.dashboardService.getUser()
-    .subscribe(res=>{
-      this.user.push(res);
-      this.currentUser = res;
-      console.log(res);
-    },err=>console.log(err));
+      .subscribe(res => {
+        if (!this.isEdited) {
+          this.user.push(res);
+        } else {
+          this.user.splice(0, 1, res);
+        }
+        this.currentUser = res;
+      }, err => console.log(err));
   }
 
-  filterUserDetails(){
-    return this.user.map(x=>x.userDetails);
+  filterUserDetails() {
+    return this.user.map(x => x.userDetails);
   }
-  filterUserAddress(){
-    return this.user.map(x=>x.userAddress);
+  filterUserAddress() {
+    return this.user.map(x => x.userAddress);
   }
 
-  onEditDetails(put: NgForm){
+  onEditDetails(put: NgForm) {
     const editedUser = put.value;
-    
-    if(editedUser.login === this.currentUser.login){
+
+    if (editedUser.login === this.currentUser.login) {
       editedUser.login = null;
     }
-    if(editedUser.emailPollub === this.currentUser.emailPollub){
+    if (editedUser.emailPollub === this.currentUser.emailPollub) {
       editedUser.emailPollub = null;
     }
-    console.log(editedUser);
-    console.log(editedUser.login);
-    console.log(editedUser.emailPollub);
     this.dashboardService.editUser(editedUser).subscribe(
-      res=>{
+      res => {
         this.isEdited = true;
         this.ngOnInit();
-        this.dashboardService.getUser().subscribe(
-          res=>{
-            console.log(res);
-          }
-        );
-      },err=>{
+      }, err => {
         console.log(err);
       }
     )

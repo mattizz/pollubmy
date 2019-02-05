@@ -5,6 +5,7 @@ export class Comment{
         public points: number,
         public postTime: string,
         public text: string,
-        public userLogin: string
+        public userLogin: string,
+        public rate: string
     ){}
 }

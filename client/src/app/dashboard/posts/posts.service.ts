@@ -1,5 +1,4 @@
 import { HttpClient } from '@angular/common/http';
-import { Comment } from './comment.model';
 import { Post } from './post.model';
 import { Injectable } from '@angular/core';
 @Injectable({
@@ -52,8 +51,8 @@ export class PostsService {
       }
     });
   }
-  ratePost(postId: string, rate: string){
-      return this.http.patch('http://localhost:8080/post/rate/'+postId+'?rate='+rate,'',{
+  ratePost(forumPostId: string, rate: string){
+      return this.http.patch('http://localhost:8080/post/rate/'+forumPostId+'?rate='+rate,'',{
         responseType: 'text',
         headers: {
         'Authorization' : localStorage.getItem('token')

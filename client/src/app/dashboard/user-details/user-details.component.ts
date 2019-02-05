@@ -9,6 +9,7 @@ export class UserDetailsComponent implements OnInit {
   @ViewChild('profileDetails') profileDetails;
   @ViewChild('lessonsDetails') lessonsDetails;
   @ViewChild('postsDetails') postsDetails;
+  @ViewChild('filesDetails') filesDetails;
 
   constructor() { }
 
@@ -16,6 +17,7 @@ export class UserDetailsComponent implements OnInit {
     this.profileDetails.nativeElement.style.display = 'block';
     this.lessonsDetails.nativeElement.style.display = 'none';
     this.postsDetails.nativeElement.style.display = 'none';
+    this.filesDetails.nativeElement.style.display = 'none';
   
   }
 
@@ -28,9 +30,7 @@ export class UserDetailsComponent implements OnInit {
     links = document.getElementsByClassName("link");
     for(let i=0;i<links.length;i++){
       links[i].className = links[i].className.replace(" active","");
-      console.log(links[i].className);
     }
     document.getElementById(detailName).style.display="block";
-    console.log(event.target.className);
   }
 }
